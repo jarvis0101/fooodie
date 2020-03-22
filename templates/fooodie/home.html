@@ -1,0 +1,60 @@
+{% extends 'fooodie/base.html' %}
+{% load static %}
+
+{% block title_block %}
+	Homepage
+{% endblock %}
+
+
+{% block body_block %}
+	<section class="mosh-portfolio-area section_padding_100_0 clearfix">
+		<h1 style="font-size:50px;" align="center";> Would You Rather Eat:</h1>
+	</section>
+
+    <!-- ***** Random Pics Area Start ***** -->
+    <section class="mosh-portfolio-area section_padding_100_0 clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center">
+                        <p>Some Random Pictures of Our Users</p>
+                        <h2>Do you like what you see?</h2>
+						
+						<div>
+							<img src="{{ photo1.photo.url }}" alt="">
+							<strong id="like_count">{{ photo1.votes }}</strong> votes 
+							<button id="like_btn" data-categoryid="{{ photo1.vote }}" class="btn btn-primary btn-sm" type="button"> 
+								<span data-feather="thumbs-up"></span> Like Photo 
+							</button>
+
+							<img src="{{ photo2.photo.url }}" alt="">
+							<strong id="like_count">{{ photo1.votes }}</strong> votes 
+							<button id="like_btn" data-categoryid="{{ photo1.vote }}" class="btn btn-primary btn-sm" type="button"> 
+								<span data-feather="thumbs-up"></span> Like Photo 
+							</button>
+						</div>
+						
+						
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mosh-portfolio">
+			{% for pic in random_pics %}
+				<!-- Single gallery Item Start -->
+				<div class="single_gallery_item gd">
+					<img src="{{ pic.photo.url }}" alt="">
+					<div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
+						<div class="port-hover-text text-center">
+							<h4>{{ pic.name }}</h4>
+							<a href="#">Number of votes: {{ pic.votes }}</a><br>
+							<a href="{% url 'fooodie:user_profile' pic.user.slug %}">Author: {{ pic.user.user.username }}</a>
+						</div>
+					</div>
+				</div>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- ***** Random Pics Area End ***** -->
+{% endblock %}

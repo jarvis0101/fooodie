@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+{% extends 'fooodie/base.html' %}
+{% load staticfiles %}
+
+<html>
+<head lang="en">
+  <meta charset="UTF-8" />
+
+<body>
+		<title>
+{% block title_block %}
+About Us
+{% endblock %}
+
+<div>
+{% block body_block %}
+<section class="mosh-portfolio-area section_padding_100_0 clearfix">
+  <h1 align="center">ABOUT US</h1><br>
+    <img src ="{%static 'images/about.jpg' %}"
+    alt="About Us" class="w3-image" style="display:block;margin:auto" width="800" height="533">
+
+    <h2 align="center">We are a Team!</h2><br>
+    <h3 style="text-align:center">2431184 - Jarvis Tan</h3>
+    <h3 style="text-align:center">2038796 - Declan John Davidson</h3>
+    <h3 style="text-align:center">2403203 - Jose Povedano Poyato</h3>
+    <h3 style="text-align:center">2406295 - Santi Tomas Nadal</h3>
+</section>
+{% endblock %}
+</div>
+</body>
+</html>

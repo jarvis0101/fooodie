@@ -1,0 +1,82 @@
+{% extends 'fooodie/base.html' %}
+{% load static %}
+
+<head lang="en">
+		<meta charset="UTF-8" />
+
+	{% block title_block %}
+		MyProfile
+	{% endblock %}
+
+<!--Just a layout, with placeholders still need actual obejcts-->
+{% block body_block %}
+	<div id="fooodie-page">
+		<a href="#" class="js-fooodie-nav-toggle fooodie-nav-toggle"><i></i></a>
+		<aside id="fooodie-aside" role="complementary" class="js-fullheight text-center">
+			{% if profile %}
+			<h1 id="fooodie-logo"><a href="/#"><span class="img" style="background-image: url({{ profile.pic }});"></span>{{ user.username }}</a></h1>
+			{% else %}
+			<h1 id="fooodie-logo"><a href="/#"><span class="img" style="background-image: url();"></span>{{ user.username }}</a></h1>
+			{% endif %}
+			<nav id="fooodie-main-menu" role="navigation">
+				<ul>
+					{% if profile %}
+					<li> <a href="/#"> Upload a profile Picture</a></li>
+					<li><a href="{% url 'fooodie:add_food_photo'%}"></a>Upload a food plate</li>
+					{% endif %}
+					<li><a href="/#">Settings</a></li>
+				</ul>
+			</nav>
+
+		</aside> <!-- END fooodie-ASIDE -->
+		<div id="fooodie-main">
+			<section class="ftco-section ftco-bread">
+				<div class="container">
+					<div class="row no-gutters slider-text justify-content-center align-items-center">
+	          <div class="col-md-8 ftco-animate">
+	            <h1 class="bread">My Profile</h1>
+	          </div>
+	        </div>
+				</div>
+			</section>
+			<section class="ftco-section-3">
+				<div class="photograhy">
+					<div class="row">
+					{% if profile %}
+						{% if photos %}
+							{% for pic in photos %}				
+								{% if pic.user.id == profile.id %}
+									<!-- Actual food photo -->
+									<div class="col-md-4 ftco-animate">
+										<a href="{{baseDir}}{{ pic.photo.url }}" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url({{baseDir}}{{ pic.photo.url }});">
+										<div class="overlay"></div>
+											<div class="text ml-4 mb-4">
+												<h3>{{ pic.name }}</h3>
+												<span class="tag">Number of votes: {{ pic.votes }}</span>
+											</div>
+										</a>
+									</div>
+								{% endif %}	
+							{% endfor %}
+						{% endif %}
+					{% else %}
+						<strong>There are no pictures</strong>
+					{% endif %}
+					
+						<div class="col-md-4 ftco-animate">
+							<a href="{% static 'images/rango.jpg' %}" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url({% static 'images/rango.jpg' %});">
+								<div class="overlay"></div>
+								<div class="text ml-4 mb-4">
+									<h3>Photo 01</h3>
+									<span class="tag">Model</span>
+								</div>
+							</a>
+						</div>
+					
+					</div>
+				</div>
+			</section>
+		</div><!-- END fooodie-MAIN -->
+	</div><!-- END fooodie-PAGE -->
+{% endblock %}
+

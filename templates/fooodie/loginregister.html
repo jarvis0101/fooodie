@@ -1,0 +1,35 @@
+{% extends 'fooodie/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	Login/Register
+{% endblock %}
+
+{% block body_block %}
+	<section class="mosh-portfolio-area section_padding_100_0 clearfix">
+		<h1>THIS IS THE LOGIN/REGISTRATION TEMPLATE</h1>
+			<div>
+				{% if registered %}
+					<strong>Thank you for registering!</strong>
+					<a href="{% url 'fooodie:home' %}">Return to the homepage.</a><br />
+				{% else %}
+					<strong>Login here!<strong><br />
+					<form id="login_form" method="post" action="{% url 'fooodie:login' %}">
+						{% csrf_token %}
+						Username: <input type="text" name="username" value="" size="50" />
+						<br />
+						Password: <input type="password" name="password" value="" size="50" />
+						<br />
+						<input type="submit" value="submit" />
+					</form>
+					<strong>Register here!</strong><br />
+					<form id="user_form" method="post" action="{% url 'fooodie:register' %}" enctype="multipart/form-data">
+						{% csrf_token %}
+						{{ user_form.as_p }}
+						{{ profile_form.as_p }}
+						<input type="submit" name="submit" value="Register" />
+					</form>
+				{% endif %}
+			</div>
+		</section>
+{% endblock %}

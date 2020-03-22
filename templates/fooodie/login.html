@@ -1,0 +1,27 @@
+<!DOCTYPE>
+{% load staticfiles %}
+<html>
+	<head lang="en">
+		<meta charset="UTF-8" />
+		<title> Foodie - 
+		{% block title_block %} 
+		Login 
+		{% endblock %} 
+		</title> 
+<h1>THIS IS THE LOGIN TEMPLATE</h1>
+	<body>
+		<h1>Login here!</h1>
+		<form id="login_form" method="post" action="{% url 'fooodie:login' %}">
+			{% csrf_token %}
+			Username: <input type="text" name="username" value="" size="50" />
+			<br />
+			Password: <input type="password" name="password" value="" size="50" />
+			<br />
+			<input type="submit" value="submit" />
+		</form>
+		
+			
+					
+					
+			
+</html>

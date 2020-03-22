@@ -1,0 +1,30 @@
+<!DOCTYPE>
+{% load staticfiles %}
+<html>
+	<head lang="en">
+		<meta charset="UTF-8" />
+		<title> Foodie - 
+		{% block title_block %} 
+		Register 
+		{% endblock %} 
+		</title> 
+<h1>THIS IS THE REGISTRATION TEMPLATE</h1>
+	<body>
+		<div>
+			{% if registered %}
+				<strong>Thank you for registering!</strong>
+				<a href="{% url 'fooodie:home' %}">Return to the homepage.</a><br />
+			{% else %}
+				<strong>Register here!</strong><br />
+				<form id="user_form" method="post" action="{% url 'fooodie:register' %}" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{ user_form.as_p }}
+					{{ profile_form.as_p }}
+					<input type="submit" name="submit" value="Register" />
+				</form>
+			{% endif %}
+			
+					
+					
+			
+</html>

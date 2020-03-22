@@ -1,0 +1,58 @@
+{% extends 'fooodie/home.html' %}
+{% load staticfiles %}
+
+
+	<head lang="en">
+		<meta charset="UTF-8" />
+
+		{% block title_block %}
+		Leaderboard
+		{% endblock %}
+
+{% block body_block %}
+<section class="mosh-portfolio-area section_padding_100_0 clearfix">
+<h1>LEADERBOARD</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+				<h2> Here are the top ranking users </h2>
+				<div>
+					{% if top_profiles %}
+						<ul>
+						{% for profile in top_profiles %}
+						{% if profile.picture %}
+							<img src="{{ profile.picture.url }}" height="200" width="200" /> 
+						{% else %}
+							<strong>No profile pic</strong>
+						{% endif %}
+							<ul>
+								<li><a href="{% url 'fooodie:user_profile' profile.slug %}">{{ profile.user.username }}</a></li>
+							</ul>
+						{% endfor %}
+						</ul>
+					{% else %}
+						<strong>There are no profiles</strong>
+					{% endif %}
+				</div>
+			</div>
+			<div class="col-sm">
+				<h2> Here are the top ranking photos </h2>
+		<div>
+			{% if top_pics %}
+				{% for pic in top_pics %}
+				<img src="{{ pic.photo.url }}" height="200" width="200" /> 
+				<ul>
+					<li>{{ pic.name }}</li>
+					<li><a href="{% url 'fooodie:user_profile' pic.user.slug %}">{{ pic.user.user.username }}</a></li>
+				</ul>
+				{% endfor %}
+			{% else %}
+				<strong>There are no pictures</strong>
+			{% endif %}
+		</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
